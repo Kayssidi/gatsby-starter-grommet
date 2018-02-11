@@ -1,5 +1,6 @@
 .cache
-public/
+public/*
+!public/package.json
 
 # Logs
 logs
