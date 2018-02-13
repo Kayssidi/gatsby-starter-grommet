@@ -37,32 +37,24 @@ class MenuHeader extends React.Component {
     this.setState({ small });
   }
 
+  labelReserve = () => this.state.small ? "":"Réserver";
+  labelContact = () => this.state.small ? "":"Contacter";
+  labelInfo    = () => this.state.small ? "":"Information";
+
   render() {
     return (
       <div>
         <Header size="small" colorIndex="light-2">
           <Box responsive full="horizontal" justify="center" textAlign="center">
-            {this.state.small ? (
-              <Anchor id="anchorFav" icon={<FavIcon />} label="" href="#" />
-            ) : (
-              <Anchor icon={<FavIcon />} label="R?server" href="#" />
-            )}
+              <Anchor icon={<FavIcon />} label={this.labelReserve()} path={{ path: '/book', index: true }} />
           </Box>
 
           <Box responsive full="horizontal" justify="center" textAlign="center">
-            {this.state.small ? (
-              <Anchor icon={<MailIcon />} label="" href="#" />
-            ) : (
-              <Anchor icon={<MailIcon />} label="Contacter" href="#" />
-            )}
+              <Anchor icon={<MailIcon />} label={this.labelContact()} path={{ path: '/contact', index: true }} />
           </Box>
 
           <Box responsive full="horizontal" justify="center" textAlign="center">
-            {this.state.small ? (
-              <Anchor icon={<HelpIcon />} label="" href="#" />
-            ) : (
-              <Anchor icon={<HelpIcon />} label="Information" href="#" />
-            )}
+              <Anchor icon={<HelpIcon />} label={this.labelInfo()} path={{ path: '/info', index: true }} />
           </Box>
         </Header>
         <Hero
