@@ -23,6 +23,8 @@ class ClassTemplate extends React.Component {
       this.state =
       {
           stateShowConfirmationToast : false,
+          stateMissingContact : false,
+          stateMissingMessage : false,
       }
     
   }
@@ -31,6 +33,19 @@ class ClassTemplate extends React.Component {
   {
     e.preventDefault();
 
+    let fieldMissing= false;
+    
+    const contactString = this.refs.refCourriel.componentRef.value.trim();
+    const messageString = this.refs.refMessage.value.trim();
+    
+    if( contactString.length === 0 ) fieldMissing = true;
+    if( messageString.length === 0 ) fieldMissing = true;
+    
+    this.setState( { stateMissingContact : (contactString.length === 0) } );
+    this.setState( { stateMissingMessage : (messageString.length === 0) } );
+    
+    if(fieldMissing) return;
+    
     this.refs.refCourriel.componentRef.value = "";
     this.refs.refMessage.value = "";
     
@@ -56,12 +71,12 @@ class ClassTemplate extends React.Component {
           <Section align='center' pad='medium' margin='medium' colorIndex='light-2' separator='all'>
             <Form>
             
-              <FormField label="Courriel ou Téléphone">
-                <TextInput ref="refCourriel"/>
+              <FormField label="Courriel ou Téléphone" error={this.state.stateMissingContact?"Merci d'indiquer un moyen de vous contacter":null} >
+                <TextInput ref="refCourriel" onDOMChange={ () => { this.setState({stateMissingContact:false})} } />
               </FormField>
               
-              <FormField label="Message">
-                <textarea rows="5" type="text" ref="refMessage" />
+              <FormField label="Message" error={this.state.stateMissingMessage?"Vous n'avez rien à nous dire? :)":null}>
+                <textarea rows="5" type="text" ref="refMessage" onChange={ () => { this.setState({stateMissingMessage:false})} }/>
               </FormField>
               
               <Button label="Envoyer!" type="submit" primary={true} onClick={ (e) => this.handleSendMessageClick(e) }/>
