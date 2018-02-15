@@ -68,7 +68,7 @@ class MenuHeader extends React.Component {
           size="small"
           backgroundColorIndex="dark"
         >
-          <Heading margin="none">Tunousoul Massage</Heading>
+          <Heading margin="none"><Anchor label="Tunousoul Massage" path={{ path: '/', index: true }}/></Heading>
         </Hero>
       </div>
     );
