@@ -10,7 +10,12 @@ import Button from 'grommet/components/Button';
 import Columns from 'grommet/components/Columns';
 import Toast from 'grommet/components/Toast';
 
+import base from "../database/base";
+
+import moment from "moment";
+
 class ClassTemplate extends React.Component {
+
   state = {};
 
   constructor(props) {
@@ -37,6 +42,7 @@ class ClassTemplate extends React.Component {
     
     const contactString = this.refs.refCourriel.componentRef.value.trim();
     const messageString = this.refs.refMessage.value.trim();
+    const ts = moment().format();
     
     if( contactString.length === 0 ) fieldMissing = true;
     if( messageString.length === 0 ) fieldMissing = true;
@@ -46,10 +52,26 @@ class ClassTemplate extends React.Component {
     
     if(fieldMissing) return;
     
-    this.refs.refCourriel.componentRef.value = "";
-    this.refs.refMessage.value = "";
+    const messageObject =
+    {
+      contact : contactString,
+      message : messageString,
+      timestamp : ts,
+    }
     
-    this.setState( {stateShowConfirmationToast : true} );
+    base
+      .push(`inbox/`, { data: messageObject })
+      .then(() => {
+        this.refs.refCourriel.componentRef.value = "";
+        this.refs.refMessage.value = "";
+    
+        this.setState( {stateShowConfirmationToast : true} );
+      })
+      .catch(err => {
+        // handle error
+      });
+      
+
   }
   
   handleConfirmationToastClose()
@@ -64,7 +86,7 @@ class ClassTemplate extends React.Component {
       {
         this.state.stateShowConfirmationToast ?
         (<Toast status='ok' onClose={this.handleConfirmationToastClose}>
-            Merci, votre message a bien été envoyé! Nous vous recontacterons très rapidement.
+            Merci, votre message a bien été envoyé! Nous vous répondrons très rapidement.
         </Toast>) : null
       }
         <Columns justify='center'>
