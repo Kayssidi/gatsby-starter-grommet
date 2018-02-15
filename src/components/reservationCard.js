@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import Card from "grommet/components/Card";
 import Form from "grommet/components/Form";
 import Select from "grommet/components/Select";
-import Animate from "grommet/components/Animate";
 
 import Button from "grommet/components/Button";
 import Paragraph from "grommet/components/Paragraph";
@@ -47,7 +46,6 @@ class ReservationCard extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { isToggleOn: true };
 
     // This binding is necessary to make `this` work in the callback
     this.handleDayClick = this.handleDayClick.bind(this);
@@ -71,13 +69,12 @@ class ReservationCard extends React.Component {
     this.currentMonth = new Date();
   }
 
-  buttonTxt = () => `Réserver le ${moment(this.state.stateDateSelected).format(
-    "DD/MM/YYYY"
-  )} 
-                     à ${moment(this.state.stateTimeSelected, ["H:m"]).format(
-                       "HH:mm"
-                     )}`;
+  /* Represent the validation text button based ton date and time state */
+  buttonTxt = () => `Réserver le ${moment(this.state.stateDateSelected).format("DD/MM/YYYY")}
+                     à ${moment(this.state.stateTimeSelected, ["H:m"]).format("HH:mm")}`;
 
+  
+  /* select a day or unselect if click on the same day */
   handleDayClick(day, { selected, disabled }) {
     if (disabled) return;
 
@@ -89,33 +86,33 @@ class ReservationCard extends React.Component {
     this.setState({ stateTimeSelected: undefined });
   }
 
+  /* select time */
   handleTimeClick(time) {
     this.setState({ stateTimeSelected: time.value });
   }
 
   render() {
     return (
-      <Form>
         <Card
-          heading="Réserver une séance"
-          description="Choisir une date et un crénau horaire."
-          contentPad="none"
+              heading="Réserver une séance"
+              description="Choisir une date et un crénau horaire."
+              contentPad="none"
         >
-          <Box separator="all" colorIndex="light-1" margin="small">
+          <Box separator="all" colorIndex="light-1" margin="small"> {/* [START] inner-card Box */}
             <DayPicker
-              locale="fr"
-              months={MONTHS}
-              weekdaysLong={WEEKDAYS_LONG}
-              weekdaysShort={WEEKDAYS_SHORT}
-              firstDayOfWeek={1}
-              disabledDays={this.state.stateDisabledDate}
-              fromMonth={this.currentMonth}
-              onDayClick={this.handleDayClick}
-              selectedDays={this.state.stateDateSelected}
-            />
+                      locale="fr"
+                      months={MONTHS}
+                      weekdaysLong={WEEKDAYS_LONG}
+                      weekdaysShort={WEEKDAYS_SHORT}
+                      firstDayOfWeek={1}
+                      disabledDays={this.state.stateDisabledDate}
+                      fromMonth={this.currentMonth}
+                      onDayClick={this.handleDayClick}
+                      selectedDays={this.state.stateDateSelected}
+            /> {/* </DayPicker> */}
 
             {this.state.stateDateSelected ? (
-              <Animate enter={{ animation: "fade", duration: 500, delay: 0 }}>
+              <Box> {/* [START] Enclosing Box */}
                 <Box direction="row" align="center" margin="small">
                   <Value value="8" size="small" />
                   <Paragraph>
@@ -141,15 +138,15 @@ class ReservationCard extends React.Component {
                     value={this.state.stateTimeSelected}
                     onChange={this.handleTimeClick}
                     margin="small"
-                  />
+                  /> {/* </Select> */}
                 </Box>
-              </Animate>
+              {/* [END] Enclosing Box */}
+              </Box>
             ) : (
               <Paragraph>Choisir le jour de la séance</Paragraph>
             )}
 
             {this.state.stateDateSelected && this.state.stateTimeSelected ? (
-              <Animate enter={{ animation: "fade", duration: 500, delay: 0 }}>
                 <Box
                   align="center"
                   pad={{ horizontal: "small", vertical: "small" }}
@@ -160,13 +157,11 @@ class ReservationCard extends React.Component {
                     primary={true}
                   />
                 </Box>
-              </Animate>
             ) : (
-              <div />
+              null
             )}
-          </Box>
+          </Box> {/* [END] inner-card Box */}
         </Card>
-      </Form>
     );
   }
 }
