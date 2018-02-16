@@ -17,7 +17,7 @@ import FavIcon from "grommet/components/icons/base/Favorite";
 
 import img1 from "../assets/img/8465056651_efae1629b5_o.jpg";
 
-class ClassTemplate extends React.Component {
+class InfoPage extends React.Component {
   state = {};
 
   constructor(props) {
@@ -42,11 +42,9 @@ class ClassTemplate extends React.Component {
         <Accordion active={3} pad="large">
 
           <AccordionPanel heading="Réserver une séance">
-            <Box separator="all" full={true}>
             <Paragraph>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </Paragraph>
-            </Box>
           </AccordionPanel>
   
           <AccordionPanel heading='Quels sont les tarifs?'>
@@ -97,8 +95,8 @@ class ClassTemplate extends React.Component {
   }
 }
 
-ClassTemplate.propTypes = {
+InfoPage.propTypes = {
   //classes: PropTypes.object.isRequired
 };
 
-export default (ClassTemplate);
+export default (InfoPage);

@@ -14,7 +14,7 @@ import base from "../database/base";
 
 import moment from "moment";
 
-class ClassTemplate extends React.Component {
+class ContactPage extends React.Component {
 
   state = {};
 
@@ -93,7 +93,7 @@ class ClassTemplate extends React.Component {
           <Section align='center' pad='medium' margin='medium' colorIndex='light-2' separator='all'>
             <Form>
             
-              <FormField label="Courriel ou Téléphone" error={this.state.stateMissingContact?"Merci d'indiquer un moyen de vous contacter":null} >
+              <FormField label="Courriel ou Téléphone" error={this.state.stateMissingContact?"Merci d'indiquer un moyen de vous contacter":null}>
                 <TextInput ref="refCourriel" onDOMChange={ () => { this.setState({stateMissingContact:false})} } />
               </FormField>
               
@@ -112,8 +112,8 @@ class ClassTemplate extends React.Component {
   }
 }
 
-ClassTemplate.propTypes = {
+ContactPage.propTypes = {
   //classes: PropTypes.object.isRequired
 };
 
-export default (ClassTemplate);
+export default (ContactPage);
