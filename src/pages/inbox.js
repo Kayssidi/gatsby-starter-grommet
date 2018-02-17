@@ -16,6 +16,13 @@ import base from "../database/base";
 
 import moment from "moment";
 
+  const CmpntButtonArchive = props =>
+  {
+    return props.archives?
+           <Button icon={<ArchiveIcon />} />
+          :<Button icon={<ArchiveIcon />} onClick={ () => props.archiveFunction( props.archiveMessage ) }/>
+  }
+  
 class InboxPage extends React.Component {
   state = {};
 
@@ -24,6 +31,7 @@ class InboxPage extends React.Component {
     
     //this.callbackFunction = this.callbackFunction.bind(this);
     this.handleDeleteMessage = this.handleDeleteMessage.bind(this);
+    this.handleArchiveMessage = this.handleArchiveMessage.bind(this);
     
     this.state =
     {
@@ -32,14 +40,16 @@ class InboxPage extends React.Component {
     
   }
 
+  getInboxPath = () => this.props.archives ? 'archives/':'inbox/';
+  
   componentDidMount()
   {
-    base.bindToState('inbox/', { context: this, state: 'stateMessages', asArray: true });
+    base.bindToState( this.getInboxPath(), { context: this, state: 'stateMessages', asArray: true });
   }
   
   handleDeleteMessage(key)
   {
-    base.remove(`inbox/${key}/`)
+    base.remove(`${this.getInboxPath()}${key}/`)
         .then(() => { /* handle success */ })
         .catch(error => { /* handle error */ });
         
@@ -48,8 +58,7 @@ class InboxPage extends React.Component {
   
   handleArchiveMessage(pMessageObject)
   {
-    
-    base.push(`archive/`, { data: pMessageObject })
+    base.push(`archives/`, { data: pMessageObject })
         .then( () => { this.handleDeleteMessage( pMessageObject.key) })
         .catch(err => { /* handle error */ });
   }
@@ -70,7 +79,7 @@ class InboxPage extends React.Component {
                     description={msg.message} >
                     <Box separator="all" direction="row" justify="end">
                       <Button icon={<FavoriteIcon />} />
-                      <Button icon={<ArchiveIcon />} onClick={ () => this.handleArchiveMessage(msg) }/>
+                      <CmpntButtonArchive archives={this.props.archives} archiveFunction={ this.handleArchiveMessage } archiveMessage={msg}/>
                       <Button icon={<CloseIcon />}   onClick={ () => this.handleDeleteMessage(msg.key) }/>
                     </Box>
               </Card>
