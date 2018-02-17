@@ -59,19 +59,13 @@ class ContactPage extends React.Component {
       timestamp : ts,
     }
     
-    base
-      .push(`inbox/`, { data: messageObject })
-      .then(() => {
-        this.refs.refCourriel.componentRef.value = "";
-        this.refs.refMessage.value = "";
-    
-        this.setState( {stateShowConfirmationToast : true} );
-      })
-      .catch(err => {
-        // handle error
-      });
-      
-
+    base.push(`inbox/`, { data: messageObject })
+        .then( () => {
+                      this.refs.refCourriel.componentRef.value = "";
+                      this.refs.refMessage.value = "";
+                      this.setState( {stateShowConfirmationToast : true} );
+                     })
+        .catch( err => { /* handle error */ });
   }
   
   handleConfirmationToastClose()

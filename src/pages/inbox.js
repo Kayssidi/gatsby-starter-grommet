@@ -42,11 +42,21 @@ class InboxPage extends React.Component {
     base.remove(`inbox/${key}/`)
         .then(() => { /* handle success */ })
         .catch(error => { /* handle error */ });
+        
+    return true;
+  }
+  
+  handleArchiveMessage(pMessageObject)
+  {
+    
+    base.push(`archive/`, { data: pMessageObject })
+        .then( () => { this.handleDeleteMessage( pMessageObject.key) })
+        .catch(err => { /* handle error */ });
   }
   
   render() {
     return (
-      <Columns responsive={true} size="small" justify="center">
+      <Columns responsive={false} size="small" justify="center">
         
           {
             this.state.stateMessages.map( (msg,idx) =>
@@ -60,8 +70,8 @@ class InboxPage extends React.Component {
                     description={msg.message} >
                     <Box separator="all" direction="row" justify="end">
                       <Button icon={<FavoriteIcon />} />
-                      <Button icon={<ArchiveIcon />} />
-                      <Button icon={<CloseIcon />}  onClick={ () => this.handleDeleteMessage(msg.key) }/>
+                      <Button icon={<ArchiveIcon />} onClick={ () => this.handleArchiveMessage(msg) }/>
+                      <Button icon={<CloseIcon />}   onClick={ () => this.handleDeleteMessage(msg.key) }/>
                     </Box>
               </Card>
             )

@@ -53,9 +53,9 @@ class MenuHeader extends React.Component {
       <div>
         <Header size="small" colorIndex="light-2">
 
-          <CmpntMenuItem label={this.labelReserve()} path='/book'><InboxIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelContact()} path='/contact'><InboxIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelInfo()}    path='/info'><InboxIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelReserve()} path='/book'><FavIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelContact()} path='/contact'><MailIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelInfo()}    path='/info'><HelpIcon /></CmpntMenuItem>
           <CmpntMenuItem label={this.labelAdmin()}   path='/admin'><InboxIcon /></CmpntMenuItem>
           
         </Header>
