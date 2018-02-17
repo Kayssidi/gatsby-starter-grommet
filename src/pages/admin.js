@@ -8,9 +8,9 @@ import MailIcon from "grommet/components/icons/base/Mail";
 import HostIcon from "grommet/components/icons/base/Host";
 
 
-const AdminOption = props => <Box align="center" full="horizontal" pad="small">
-                               <Anchor icon={props.children} label={props.label} href={props.href} />
-                             </Box>;
+const CmpntAdminOption = props => <Box align="center" full="horizontal" pad="small">
+                                    <Anchor icon={props.children} label={props.label} path={{ path: props.path, index: true }} />
+                                  </Box>;
 
 class AdminPage extends React.Component {
   state = {};
@@ -33,8 +33,8 @@ class AdminPage extends React.Component {
     return (
       <Box>
       
-        <AdminOption label="Inbox" href="inbox"><MailIcon /></AdminOption>
-        <AdminOption label="Archives" href="archives"><HostIcon /></AdminOption>
+        <CmpntAdminOption label="Inbox" path="inbox"><MailIcon /></CmpntAdminOption>
+        <CmpntAdminOption label="Archives" path="archives"><HostIcon /></CmpntAdminOption>
         
       </Box>
     );
