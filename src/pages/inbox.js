@@ -54,12 +54,13 @@ class InboxPage extends React.Component {
               <Card key={msg.key}
                     separator="all"
                     margin="small"
+                    colorIndex="light-1"
                     label={ `[#${idx}] ${msg.timestamp}` }
                     heading={msg.contact}
                     description={msg.message} >
                     <Box separator="all" direction="row" justify="end">
-                      <Button icon={<FavoriteIcon />} href='#' />
-                      <Button icon={<ArchiveIcon />} href='#' />
+                      <Button icon={<FavoriteIcon />} />
+                      <Button icon={<ArchiveIcon />} />
                       <Button icon={<CloseIcon />}  onClick={ () => this.handleDeleteMessage(msg.key) }/>
                     </Box>
               </Card>

@@ -14,6 +14,7 @@ import Image from "grommet/components/Image";
 import FavIcon from "grommet/components/icons/base/Favorite";
 import HelpIcon from "grommet/components/icons/base/Help";
 import MailIcon from "grommet/components/icons/base/Mail";
+import InboxIcon from "grommet/components/icons/base/Inbox";
 
 // http://grommet.io/docs/color/
 
@@ -37,9 +38,11 @@ class MenuHeader extends React.Component {
     this.setState({ small });
   }
 
+  // display Icon+Label or just Label
   labelReserve = () => this.state.small ? "":"Réserver";
   labelContact = () => this.state.small ? "":"Contacter";
   labelInfo    = () => this.state.small ? "":"Information";
+  labelAdmin   = () => this.state.small ? "":"Admin";
 
   render() {
     return (
@@ -56,6 +59,11 @@ class MenuHeader extends React.Component {
           <Box responsive full="horizontal" justify="center" textAlign="center">
               <Anchor icon={<HelpIcon />} label={this.labelInfo()} path={{ path: '/info', index: true }} />
           </Box>
+          
+          <Box responsive full="horizontal" justify="center" textAlign="center">
+              <Anchor icon={<InboxIcon />} label={this.labelAdmin()} path={{ path: '/admin', index: true }} />
+          </Box>
+          
         </Header>
         <Hero
           background={
