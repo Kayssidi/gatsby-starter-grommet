@@ -7,10 +7,16 @@ import Card from 'grommet/components/Card';
 import Columns from 'grommet/components/Columns';
 import Button from 'grommet/components/Button';
 import Box from 'grommet/components/Box';
+import Anchor from 'grommet/components/Anchor';
 
 import CloseIcon from "grommet/components/icons/base/Close";
 import ArchiveIcon from "grommet/components/icons/base/Archive";
 import FavoriteIcon from "grommet/components/icons/base/Favorite";
+
+import FavIcon from "grommet/components/icons/base/Favorite";
+import HelpIcon from "grommet/components/icons/base/Help";
+import MailIcon from "grommet/components/icons/base/Mail";
+import InboxIcon from "grommet/components/icons/base/Inbox";
 
 import base from "../database/base";
 
@@ -22,6 +28,10 @@ import moment from "moment";
            <Button icon={<ArchiveIcon />} />
           :<Button icon={<ArchiveIcon />} onClick={ () => props.archiveFunction( props.archiveMessage ) }/>
   }
+  
+  const CmpntMenuItem = props =>  <Box responsive full="horizontal" justify="center" textAlign="center">
+                                  <Anchor icon={props.children} label={props.label} path={{ path: props.path, index: true }} />
+                                </Box>;
   
 class InboxPage extends React.Component {
   state = {};
@@ -52,8 +62,6 @@ class InboxPage extends React.Component {
     base.remove(`${this.getInboxPath()}${key}/`)
         .then(() => { /* handle success */ })
         .catch(error => { /* handle error */ });
-        
-    return true;
   }
   
   handleArchiveMessage(pMessageObject)
@@ -61,6 +69,11 @@ class InboxPage extends React.Component {
     base.push(`archives/`, { data: pMessageObject })
         .then( () => { this.handleDeleteMessage( pMessageObject.key) })
         .catch(err => { /* handle error */ });
+  }
+  
+  timestamp2DateTime(pTimestamp)
+  {
+    return moment(pTimestamp).format("DD/MM/YYYY HH:mm");
   }
   
   render() {
@@ -74,14 +87,16 @@ class InboxPage extends React.Component {
                     separator="all"
                     margin="small"
                     colorIndex="light-1"
-                    label={ `[#${idx}] ${msg.timestamp}` }
+                    label={ `[#${idx}] ${this.timestamp2DateTime(msg.timestamp)}` }
                     heading={msg.contact}
                     description={msg.message} >
-                    <Box separator="all" direction="row" justify="end">
-                      <Button icon={<FavoriteIcon />} />
-                      <CmpntButtonArchive archives={this.props.archives} archiveFunction={ this.handleArchiveMessage } archiveMessage={msg}/>
-                      <Button icon={<CloseIcon />}   onClick={ () => this.handleDeleteMessage(msg.key) }/>
-                    </Box>
+
+                <Box separator="all" direction="row" justify="end" responsive={false} >
+                  <Button icon={<FavoriteIcon />} />
+                  <CmpntButtonArchive archives={this.props.archives} archiveFunction={ this.handleArchiveMessage } archiveMessage={msg}/>
+                  <Button icon={<CloseIcon />}   onClick={ () => this.handleDeleteMessage(msg.key) }/>
+                </Box>
+
               </Card>
             )
           }
