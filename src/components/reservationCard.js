@@ -73,6 +73,8 @@ class ReservationCard extends React.Component {
   buttonTxt = () => `Réserver le ${moment(this.state.stateDateSelected).format("DD/MM/YYYY")}
                      à ${moment(this.state.stateTimeSelected, ["H:m"]).format("HH:mm")}`;
 
+// "2018-02-17T23:17:37+01:00"
+  reservationTimestamp = () =>`${moment(this.state.stateDateSelected).format("YYYY-MM-DD")}T${moment(this.state.stateTimeSelected, ["H:m"]).format("HH:mm")}`;
   
   /* select a day or unselect if click on the same day */
   handleDayClick(day, { selected, disabled }) {
@@ -126,7 +128,7 @@ class ReservationCard extends React.Component {
                   <Select
                     placeHolder={this.state.stateTimeSelected}
                     options={[
-                      "09:00",
+                      "09h00",
                       "10h00",
                       "11h00",
                       "12h00",
@@ -147,15 +149,9 @@ class ReservationCard extends React.Component {
             )}
 
             {this.state.stateDateSelected && this.state.stateTimeSelected ? (
-                <Box
-                  align="center"
-                  pad={{ horizontal: "small", vertical: "small" }}
-                >
-                  <Button
-                    label={this.buttonTxt()}
-                    type="submit"
-                    primary={true}
-                  />
+                <Box align="center" pad={{ horizontal: "small", vertical: "small" }} >
+                  <Button label={this.buttonTxt()} type="submit" primary={true}
+                          onClick={ () => this.props.propBookDateTime( this.reservationTimestamp() ) } />
                 </Box>
             ) : (
               null

@@ -18,10 +18,16 @@ import InboxIcon from "grommet/components/icons/base/Inbox";
 
 // http://grommet.io/docs/color/
 
-const CmpntMenuItem = props =>  <Box responsive full="horizontal" justify="center" textAlign="center">
-                                  <Anchor icon={props.children} label={props.label} path={{ path: props.path, index: true }} />
-                                </Box>;
-                                  
+const CmpntMenuItem = props => {
+                                const leftMargin  = props.leftMargin  ? props.leftMargin  : "none";
+                                const rightMargin = props.rightMargin ? props.rightMargin : "none";
+                                return (
+                                  <Box margin={{ left:leftMargin, right:rightMargin }}>
+                                    <Anchor icon={props.children} label={props.label} path={{ path: props.path, index: true }} />
+                                  </Box>
+                                );
+                              }
+
 class MenuHeader extends React.Component {
   state = {};
 
@@ -51,12 +57,12 @@ class MenuHeader extends React.Component {
   render() {
     return (
       <div>
-        <Header size="small" colorIndex="light-2">
+        <Header size="small" colorIndex="light-2" justify="between">
 
-          <CmpntMenuItem label={this.labelReserve()} path='/book'><FavIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelReserve()} path='/booking' leftMargin='large'><FavIcon /></CmpntMenuItem>
           <CmpntMenuItem label={this.labelContact()} path='/contact'><MailIcon /></CmpntMenuItem>
           <CmpntMenuItem label={this.labelInfo()}    path='/info'><HelpIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelAdmin()}   path='/admin'><InboxIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelAdmin()}   path='/admin' rightMargin='large'><InboxIcon /></CmpntMenuItem>
           
         </Header>
         <Hero
