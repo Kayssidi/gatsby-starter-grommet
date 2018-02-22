@@ -29,10 +29,6 @@ import moment from "moment";
           :<Button icon={<ArchiveIcon />} onClick={ () => props.archiveFunction( props.archiveMessage ) }/>
   }
   
-  const CmpntMenuItem = props =>  <Box responsive full="horizontal" justify="center" textAlign="center">
-                                  <Anchor icon={props.children} label={props.label} path={{ path: props.path, index: true }} />
-                                </Box>;
-  
 class InboxPage extends React.Component {
   state = {};
 

@@ -13,6 +13,7 @@ import Anchor from 'grommet/components/Anchor';
 
 import ReservationCard from '../components/reservationCard';
 
+
 class MainPage extends React.Component {
   state = {};
 
