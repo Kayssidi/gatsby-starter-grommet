@@ -139,7 +139,7 @@ class ReservationCard extends React.Component {
                     ]}
                     value={this.state.stateTimeSelected}
                     onChange={this.handleTimeClick}
-                    margin="small"
+                
                   /> {/* </Select> */}
                 </Box>
               {/* [END] Enclosing Box */}

@@ -74,7 +74,7 @@ class InboxPage extends React.Component {
   
   render() {
     return (
-      <Columns responsive={false} size="small" justify="center">
+      <Box wrap={true} responsive padding='large' margin='large' direction="row" justify="around">
         
           {
             this.state.stateMessages.map( (msg,idx) =>
@@ -97,7 +97,7 @@ class InboxPage extends React.Component {
             )
           }
         
-      </Columns>
+      </Box>
     
     );
   }
