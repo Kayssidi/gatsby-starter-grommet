@@ -15,6 +15,8 @@ import UserIcon from "grommet/components/icons/base/User";
 import ValidateIcon from "grommet/components/icons/base/Validate";
 import Status from "grommet/components/icons/Status";
 
+import ExtensibleTextArea from "./extensibleTextArea";
+
 class OwnerInformationCard extends React.Component {
   state = {};
 
@@ -36,12 +38,12 @@ class OwnerInformationCard extends React.Component {
     let userObject = {
       nom: this.refs.refNom.componentRef.value,
       prenom: this.refs.refPrenom.componentRef.value,
-      adresse: this.refs.refAdresse.value,
+      adresse: this.refs.refAdresse.componentRef.value,
       couriel: this.refs.refCouriel.componentRef.value,
-      telephone: this.refs.refTelephone.componentRef.value
+      telephone: this.refs.refTelephone.componentRef.value,
     };
     console.log(userObject);
-    //console.log(this.refs.refAdresse);
+    //console.log(this.refs);
 
     base
       .push(`users/`, { data: userObject })
@@ -69,7 +71,7 @@ class OwnerInformationCard extends React.Component {
         </FormField>
 
         <FormField label="Adresse">
-          <textarea rows="3" type="text" ref="refAdresse" />
+          <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref="refAdresse"/>
         </FormField>
 
         <FormField label="Couriel">

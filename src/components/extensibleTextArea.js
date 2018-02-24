@@ -22,7 +22,8 @@ class ExtensibleTextArea extends React.Component {
 
   render() {
     return (
-      <textarea rows={this.state.stateFocused ? this.props.propFocusedSize:this.props.propBluredSize}
+      <textarea ref={elTextArea => this.componentRef = elTextArea}
+                rows={this.state.stateFocused ? this.props.propFocusedSize:this.props.propBluredSize}
                 type="text"
                 onFocus={this.cbOnFocus}
                 onBlur={this.cbOnBlur}
