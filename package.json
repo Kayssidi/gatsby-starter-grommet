@@ -10,10 +10,17 @@
     "dev": "gatsby develop",
     "develop": "gatsby develop",
     "build": "gatsby build",
+    
     "clean": "git clean -xfd .cache public/",
     "serve": "yarn run clean && yarn run build && gatsby serve",
     "deploy": "yarn run build -- --prefix-paths && gh-pages -d public",
-    "watchers": "sh ./extandWatchers.sh"
+    
+    "watchers": "sh ./extandWatchers.sh",
+    
+    "initCordova":"cordova create cordova && pushd cordova && cordova platform add android",
+    "pluginCordova":"pushd cordova && cordova plugin add cordova-plugin-inappbrowser && cordova plugin add cordova-plugin-httpd",
+    "copyCordova":"mkdir ./cordova/www/public && copy -r ./public ./cordova/www/public/",
+    "buildAndroid":"pushd cordova && cordova build android",
   },
   "dependencies": {
     "autoprefixer": "^7.1.2",
