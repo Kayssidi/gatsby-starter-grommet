@@ -21,7 +21,7 @@
     function onDeviceReady() {
         httpd = ( cordova && cordova.plugins && cordova.plugins.CorHttpd ) ? cordova.plugins.CorHttpd : null;
 
-        startServer("htdocs");
+        startServer("public");
     }
     function updateStatus() {
     	document.getElementById('location').innerHTML = "document.location.href: " + document.location.href;
@@ -80,7 +80,7 @@
     </script>
     <div id="fullpage">
     <p>Demo for CorHttpd Plugin</p>
-    <p><button onclick="startServer('htdocs');">Start Httpd at www/htdocs</button></p>
+    <p><button onclick="startServer('public');">Start Httpd at www/public</button></p>
     <p><button onclick="startServer('/');">Start Httpd at /</button></p>
     <p><button onclick="stopServer();">Stop Httpd</button></p>
     <p><button onclick="updateStatus();">Check Status</button></p>
