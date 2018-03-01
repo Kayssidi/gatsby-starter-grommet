@@ -96,8 +96,7 @@ class ReservationCard extends React.Component {
   render() {
     return (
         <Card
-              heading="Réserver une séance"
-              description="Choisir une date et un crénau horaire."
+              description="Choisir une date et une heure."
               contentPad="none"
         >
           <Box separator="all" colorIndex="light-1" margin="small"> {/* [START] inner-card Box */}

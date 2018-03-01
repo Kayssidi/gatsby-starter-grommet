@@ -11,8 +11,8 @@ import Hero from "grommet/components/Hero";
 import Image from "grommet/components/Image";
 
 // http://grommet.io/docs/icon/
-import FavIcon from "grommet/components/icons/base/Favorite";
-import HelpIcon from "grommet/components/icons/base/Help";
+import CalendarIcon from "grommet/components/icons/base/Calendar";
+import InfoIcon from "grommet/components/icons/base/Info";
 import MailIcon from "grommet/components/icons/base/Mail";
 import InboxIcon from "grommet/components/icons/base/Inbox";
 
@@ -59,9 +59,9 @@ class MenuHeader extends React.Component {
       <div>
         <Header size="small" colorIndex="light-2" justify="between">
 
-          <CmpntMenuItem label={this.labelReserve()} path='/booking' leftMargin='large'><FavIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelReserve()} path='/booking' leftMargin='large'><CalendarIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelInfo()}    path='/info'><InfoIcon /></CmpntMenuItem>
           <CmpntMenuItem label={this.labelContact()} path='/contact'><MailIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelInfo()}    path='/info'><HelpIcon /></CmpntMenuItem>
           <CmpntMenuItem label={this.labelAdmin()}   path='/admin' rightMargin='large'><InboxIcon /></CmpntMenuItem>
           
         </Header>

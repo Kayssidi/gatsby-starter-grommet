@@ -2,13 +2,11 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import Card from "grommet/components/Card";
-import Form from "grommet/components/Form";
 import FormField from "grommet/components/FormField";
 import TextInput from "grommet/components/TextInput";
 import Button from "grommet/components/Button";
 
-// http://grommet.io/docs/icon/
-import FavIcon from "grommet/components/icons/base/Favorite";
+import ExtensibleTextArea from "./extensibleTextArea";
 
 class DogInformationCard extends React.Component {
   state = {};
@@ -28,7 +26,6 @@ class DogInformationCard extends React.Component {
   render() {
     return (
       <Card
-        label={<FavIcon />}
         description="Dites nous en plus sur votre animal:"
         contentPad="none"
       >
@@ -45,10 +42,15 @@ class DogInformationCard extends React.Component {
         </FormField>
 
         <FormField label="Eventuelle pathologie">
-          <textarea rows="5" type="text" />
+          <ExtensibleTextArea propFocusedSize="5" propBluredSize="1"/>
         </FormField>
 
-        <Button label="Valider" type="submit" primary={true} />
+        <Button
+          label="Valider"
+          type="button"
+          primary={true}
+          onClick={ () => this.props.propValidForm() }
+        />
       </Card>
     );
   }
