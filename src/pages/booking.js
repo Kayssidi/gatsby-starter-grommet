@@ -7,6 +7,7 @@ import Section from 'grommet/components/Section';
 import Columns from 'grommet/components/Columns';
 import Label from 'grommet/components/Label';
 import Anchor from "grommet/components/Anchor";
+import Animate from 'grommet/components/Animate';
 
 import FormProgress from '../components/formProgress';
 import ReservationCard from '../components/reservationCard';
@@ -53,13 +54,11 @@ class BookingPage extends React.Component {
   
   validateUserInfo()
   {
-    console.log('validateUserInfo');
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
   validateDogInfo()
   {
-    console.log('validateDogInfo');
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
@@ -70,22 +69,35 @@ class BookingPage extends React.Component {
   
   goBackInForm(e)
   {
-    console.log('goBackInForm');
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm - 1}; });
   }
 
   render() {
 
-    let currentForm = null;
+    let transitionType = 'fade';
+    let currentForm0 = null;
     if(this.state.stateCurrentForm == 0)
-      currentForm = <ReservationCard propsDateSelected={new Date(2018, 1, 28)} propBookDateTime={ this.validateDateTime } />;
-    else if(this.state.stateCurrentForm == 1)
-      currentForm = <OwnerInformationCard propValidForm={ this.validateUserInfo }/>;
-    else if(this.state.stateCurrentForm == 2)
-      currentForm = <DogInformationCard propValidForm={ this.validateDogInfo }/>;
-    else if(this.state.stateCurrentForm == 3)
-      currentForm = <ValidationCard />;
+      currentForm0 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
+                      <ReservationCard propsDateSelected={new Date(2018, 1, 28)} propBookDateTime={ this.validateDateTime } />
+                    </Animate>;
 
+    let currentForm1 = null;
+    if(this.state.stateCurrentForm == 1)
+      currentForm1 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
+                      <OwnerInformationCard propValidForm={ this.validateUserInfo }/>
+                    </Animate>;
+
+    let currentForm2 = null;
+    if(this.state.stateCurrentForm == 2)
+      currentForm2 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
+                      <DogInformationCard propValidForm={ this.validateDogInfo }/>
+                    </Animate>;
+
+    let currentForm3 = null;
+    if(this.state.stateCurrentForm == 3)
+      currentForm3 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
+                      <ValidationCard />
+                    </Animate>;
     return (
     <Article>
         <Section>
@@ -98,7 +110,10 @@ class BookingPage extends React.Component {
               
               <Box pad="medium" margin="medium" colorIndex="light-2" separator="all" >
                 <Box>{this.state.stateCurrentForm>0?<Anchor icon={<PrevIcon />} label='retour' onClick={ e => this.goBackInForm(e) }/>:null}</Box>
-                <Box>{currentForm}</Box>
+                  <Box>{currentForm0}</Box>
+                  <Box>{currentForm1}</Box>
+                  <Box>{currentForm2}</Box>
+                  <Box>{currentForm3}</Box>
               </Box>
           </Columns>
           </Box>
