@@ -19,7 +19,7 @@ class OwnerInformationCard extends React.Component {
     this.onValidateInfo = this.onValidateInfo.bind(this);
 
     this.state = {
-
+      stateUserObject:undefined,
     };
   }
 
@@ -35,9 +35,12 @@ class OwnerInformationCard extends React.Component {
       telephone: this.refs.refTelephone.componentRef.value,
     };
     console.log(userObject);
+    
+    this.setState( {stateUserObject : userObject} );
+    this.props.propValidForm();
     //console.log(this.refs);
 
-    base
+    /*base
       .push(`users/`, { data: userObject })
       .then(() => {
         this.props.propValidForm();
@@ -45,6 +48,7 @@ class OwnerInformationCard extends React.Component {
       .catch(err => {
         // handle error
       });
+    */
   }
 
   render() {

@@ -78,7 +78,7 @@ class BookingPage extends React.Component {
     let currentForm0 = null;
     if(this.state.stateCurrentForm == 0)
       currentForm0 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
-                      <ReservationCard propsDateSelected={new Date(2018, 1, 28)} propBookDateTime={ this.validateDateTime } />
+                      <ReservationCard propBookDateTime={ this.validateDateTime } />
                     </Animate>;
 
     let currentForm1 = null;

@@ -18,6 +18,8 @@ import InboxIcon from "grommet/components/icons/base/Inbox";
 
 // http://grommet.io/docs/color/
 
+import imgHeader from "../assets/img/IMG_20141101_141538.jpg";
+
 const CmpntMenuItem = props => {
                                 const leftMargin  = props.leftMargin  ? props.leftMargin  : "none";
                                 const rightMargin = props.rightMargin ? props.rightMargin : "none";
@@ -68,7 +70,7 @@ class MenuHeader extends React.Component {
         <Hero
           background={
             <Image
-              src="http://www.dogbreedslist.info/uploads/allimg/dog-pictures/Dachshund-2.jpg"
+              src={imgHeader}
               fit="cover"
               full={true}
             />

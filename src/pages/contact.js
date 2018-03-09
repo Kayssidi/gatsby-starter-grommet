@@ -9,6 +9,7 @@ import TextInput from 'grommet/components/TextInput';
 import Button from 'grommet/components/Button';
 import Columns from 'grommet/components/Columns';
 import Toast from 'grommet/components/Toast';
+import Notification from 'grommet/components/Notification';
 
 import base from "../database/base";
 
@@ -74,15 +75,16 @@ class ContactPage extends React.Component {
   }
 
   render() {
+    
+    let validationNotif = null;
+    if(this.state.stateShowConfirmationToast)
+      validationNotif = <Notification message='Merci, votre message a bien été envoyé! Nous vous répondrons très rapidement.'
+                                      status='ok' margin='small'
+                                      closer={true} onClose={ () => this.handleConfirmationToastClose() }/>;
+    
     return (
       <Article>
-
-      {
-        this.state.stateShowConfirmationToast ?
-        (<Toast status='ok' onClose={this.handleConfirmationToastClose}>
-            Merci, votre message a bien été envoyé! Nous vous répondrons très rapidement.
-        </Toast>) : null
-      }
+        {validationNotif}
         <Columns justify='center'>
           <Section align='center' pad='medium' margin='medium' colorIndex='light-2' separator='all'>
             <Form>
@@ -96,6 +98,7 @@ class ContactPage extends React.Component {
               </FormField>
               
               <Button label="Envoyer!" type="submit" primary={true} onClick={ (e) => this.handleSendMessageClick(e) }/>
+              
             </Form>
           </Section>
         </Columns>

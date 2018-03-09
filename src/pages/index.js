@@ -10,12 +10,12 @@ import Box from 'grommet/components/Box';
 import Quote from 'grommet/components/Quote';
 import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
-import Notification from 'grommet/components/Notification';
 
 import ReservationCard from '../components/reservationCard';
 
 // http://grommet.io/docs/icon/
 import FavIcon from "grommet/components/icons/base/Favorite";
+import LinkNextIcon from "grommet/components/icons/base/LinkNext";
 
 class MainPage extends React.Component {
   state = {};
@@ -39,9 +39,12 @@ class MainPage extends React.Component {
 
         
         <Section pad={{ vertical: 'none' }} >
-        <Notification
-          message={<Anchor reverse={true} icon={<FavIcon />} label='Réserver sans plus attendre une séance de massage pour votre chien' path='/booking' />}
-          status='warning' size='small' margin='small'/>
+          
+        <Box separator="all" margin='small' pad="small" colorIndex="accent-2">
+          <Anchor icon={<LinkNextIcon />} reverse={true} primary={false} path='/booking'
+                  label='Réserver sans plus attendre une séance de massage pour votre chien'/>
+          
+        </Box>
 
           <Columns justify='center'>
 

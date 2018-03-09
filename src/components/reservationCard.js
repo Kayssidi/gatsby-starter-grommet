@@ -144,7 +144,7 @@ class ReservationCard extends React.Component {
               {/* [END] Enclosing Box */}
               </Box>
             ) : (
-              <Paragraph>Choisir le jour de la séance</Paragraph>
+              null
             )}
 
             {this.state.stateDateSelected && this.state.stateTimeSelected ? (

@@ -14,13 +14,27 @@ class DogInformationCard extends React.Component {
   constructor(props) {
     super(props);
 
-    /*
-      this.state =
-      {
-          field1 : value1,
-          field2 : value2,
-      }
-    */
+    this.onValidateInfo = this.onValidateInfo.bind(this);
+    
+    this.state =
+    {
+        stateDogObject:undefined,
+    }
+  }
+  
+  onValidateInfo(event) {
+    event.preventDefault();
+
+    let dogObject = {
+      nom: this.refs.refNom.componentRef.value,
+      age: this.refs.refAge.componentRef.value,
+      race:this.refs.refRace.componentRef.value,
+      pathologie: this.refs.refPathologie.componentRef.value,
+    };
+    console.log(dogObject);
+    
+    this.setState( {stateDogObject : dogObject} );
+    this.props.propValidForm();
   }
 
   render() {
@@ -30,26 +44,26 @@ class DogInformationCard extends React.Component {
         contentPad="none"
       >
         <FormField label="Nom">
-          <TextInput />
+          <TextInput ref="refNom"/>
         </FormField>
 
         <FormField label="Age">
-          <TextInput />
+          <TextInput ref="refAge"/>
         </FormField>
 
         <FormField label="Race">
-          <TextInput />
+          <TextInput ref="refRace"/>
         </FormField>
 
         <FormField label="Eventuelle pathologie">
-          <ExtensibleTextArea propFocusedSize="5" propBluredSize="1"/>
+          <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref="refPathologie"/>
         </FormField>
 
         <Button
           label="Valider"
           type="button"
           primary={true}
-          onClick={ () => this.props.propValidForm() }
+          onClick={e => this.onValidateInfo(e)}
         />
       </Card>
     );
