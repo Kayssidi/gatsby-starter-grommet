@@ -42,6 +42,8 @@ class OwnerInformationCard extends React.Component {
     let invalidFormsObject = this.state.stateInvalidFormsObject;
     for (let key of Object.keys(userObject))
     {
+      if(key=="telephone") continue;
+      
       if(!userObject[key])
       {
         allFieldsFilled = false;
@@ -72,6 +74,11 @@ class OwnerInformationCard extends React.Component {
     */
   }
 
+  componentDidMount()
+  {
+    this.refs.refNom.componentRef.focus();
+  }
+  
   render() {
     return (
       <Card
@@ -94,7 +101,7 @@ class OwnerInformationCard extends React.Component {
           <TextInput ref="refCouriel" />
         </FormField>
 
-        <FormField label="Téléphone" error={this.state.stateInvalidFormsObject.telephone}>
+        <FormField label="Téléphone" help="Optionnel">
           <TextInput ref="refTelephone" />
         </FormField>
 

@@ -42,6 +42,9 @@ class DogInformationCard extends React.Component {
     let invalidFormsObject = this.state.stateInvalidFormsObject;
     for (let key of Object.keys(dogObject))
     {
+      if(key=="age") continue;
+      if(key=="pathologie") continue;
+      
       if(!dogObject[key])
       {
         allFieldsFilled = false;
@@ -60,6 +63,11 @@ class DogInformationCard extends React.Component {
     
     this.setState( {stateInvalidFOrmsObject : invalidFormsObject});
   }
+  
+  componentDidMount()
+  {
+    this.refs.refNom.componentRef.focus();
+  }
 
   render() {
     return (
@@ -71,15 +79,15 @@ class DogInformationCard extends React.Component {
           <TextInput ref="refNom"/>
         </FormField>
 
-        <FormField label="Age" error={this.state.stateInvalidFormsObject.age}>
-          <TextInput ref="refAge"/>
-        </FormField>
-
         <FormField label="Race" error={this.state.stateInvalidFormsObject.race}>
           <TextInput ref="refRace"/>
         </FormField>
+        
+        <FormField label="Age" help="Optionnel">
+          <TextInput ref="refAge"/>
+        </FormField>
 
-        <FormField label="Eventuelle pathologie" error={this.state.stateInvalidFormsObject.pathologie}>
+        <FormField label="Eventuelle pathologie" help="Optionnel">
           <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref="refPathologie"/>
         </FormField>
 

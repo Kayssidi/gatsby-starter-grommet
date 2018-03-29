@@ -8,6 +8,7 @@ import Columns from 'grommet/components/Columns';
 import Label from 'grommet/components/Label';
 import Anchor from "grommet/components/Anchor";
 import Animate from 'grommet/components/Animate';
+import Notification from 'grommet/components/Notification';
 
 import FormProgress from '../components/formProgress';
 import ReservationCard from '../components/reservationCard';
@@ -16,8 +17,6 @@ import OwnerInformationCard from "../components/ownerInformationCard";
 import ValidationCard from "../components/validationCard";
 
 // http://grommet.io/docs/icon/
-import LikeIcon from "grommet/components/icons/base/Like";
-import FavIcon from "grommet/components/icons/base/Favorite";
 import PrevIcon from "grommet/components/icons/base/CaretPrevious";
 
 class BookingPage extends React.Component {
@@ -31,11 +30,14 @@ class BookingPage extends React.Component {
     this.validateUserInfo = this.validateUserInfo.bind(this);
     this.validateDogInfo  = this.validateDogInfo.bind(this);
     this.validateBooking  = this.validateBooking.bind(this);
+    this.handleConfirmationToastClose = this.handleConfirmationToastClose.bind(this);
     
       this.state =
       {
-          stateCurrentForm : 3,
+          stateCurrentForm : 0,
           stateValidatedDateTime : undefined,
+          stateDogName : undefined,
+          stateShowConfirmationToast: false,
       }
   }
 
@@ -50,27 +52,34 @@ class BookingPage extends React.Component {
   {
     this.setState( {stateValidatedDateTime : timestamp} );
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
+    this.handleConfirmationToastClose();
   }
   
-  validateUserInfo(dogName)
+  validateUserInfo()
   {
-    this.state( {stateDogName : dogName} );
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
-  validateDogInfo()
+  validateDogInfo(dogName)
   {
+    this.setState( {stateDogName : dogName} );
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
   validateBooking()
   {
-    this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
+    //this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
+    this.setState( {stateShowConfirmationToast:true , stateCurrentForm:0} );
   }
   
   goBackInForm(e)
   {
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm - 1}; });
+  }
+  
+  handleConfirmationToastClose()
+  {
+    this.setState( {stateShowConfirmationToast : false} );
   }
 
   render() {
@@ -99,10 +108,17 @@ class BookingPage extends React.Component {
       currentForm3 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
                       <ValidationCard propValidForm={this.validateBooking} propBookingDateTime={this.state.stateValidatedDateTime} propDogName={this.state.stateDogName} />
                     </Animate>;
+    
+    let validationNotif = null;
+    if(this.state.stateShowConfirmationToast)
+      validationNotif = <Notification message='Merci, votre message a bien été envoyé! Nous vous répondrons très rapidement.'
+                                      status='ok' margin='small'
+                                      closer={true} onClose={ () => this.handleConfirmationToastClose() }/>;
+                                      
     return (
     <Article>
         <Section>
-        
+          {validationNotif}
           <Box direction="column" align="center">
           
           <FormProgress propCurrentProgress={this.state.stateCurrentForm}/>
@@ -110,7 +126,8 @@ class BookingPage extends React.Component {
           <Columns justify="center">
               
               <Box pad="medium" margin="medium" colorIndex="light-2" separator="all" >
-                <Box>{this.state.stateCurrentForm>0?<Anchor icon={<PrevIcon />} label='retour' onClick={ e => this.goBackInForm(e) }/>:null}</Box>
+                <Box>{ this.state.stateCurrentForm>0 ? <Anchor icon={<PrevIcon />} label='retour' onClick={ e => this.goBackInForm(e) }/>:null}
+                </Box>
                   <Box>{currentForm0}</Box>
                   <Box>{currentForm1}</Box>
                   <Box>{currentForm2}</Box>

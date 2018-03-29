@@ -8,6 +8,8 @@ import Button from "grommet/components/Button";
 
 import ExtensibleTextArea from "./extensibleTextArea";
 
+import moment from "moment";
+
 class ValidationCard extends React.Component {
   state = {};
 
@@ -31,7 +33,12 @@ class ValidationCard extends React.Component {
   
   render() {
     
-    let desciptionLabel = `Souhaitez vous nous communiquer une information supplémentaire avant de valider de réserver de la séance du ${this.props.propBookingDateTime} pour ${this.props.propDogName}?`;
+  //buttonTxt = () => `Réserver le ${moment(this.state.stateDateSelected).format("DD/MM/YYYY")}
+  //                   à ${moment(this.state.stateTimeSelected, ["H:m"]).format("HH:mm")}`;
+    let bookingDate = moment(this.props.propBookingDateTime).format("DD/MM/YYYY");
+    let bookingTime = moment(this.props.propBookingDateTime, ["H:m"]).format("HH:mm");
+                     
+    let desciptionLabel = `Souhaitez vous nous communiquer une information supplémentaire avant de valider de réserver de la séance du ${bookingDate} à ${bookingTime} pour ${this.props.propDogName}?`;
     
     return (
         <Card
