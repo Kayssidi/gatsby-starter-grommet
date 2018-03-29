@@ -7,14 +7,9 @@ import Section from 'grommet/components/Section';
 import Card from 'grommet/components/Card';
 import Columns from 'grommet/components/Columns';
 import Box from 'grommet/components/Box';
-import Quote from 'grommet/components/Quote';
-import Paragraph from 'grommet/components/Paragraph';
 import Anchor from 'grommet/components/Anchor';
 
-import ReservationCard from '../components/reservationCard';
-
 // http://grommet.io/docs/icon/
-import FavIcon from "grommet/components/icons/base/Favorite";
 import LinkNextIcon from "grommet/components/icons/base/LinkNext";
 
 class MainPage extends React.Component {
@@ -40,7 +35,7 @@ class MainPage extends React.Component {
         
         <Section pad={{ vertical: 'none' }} >
           
-        <Box separator="all" margin='small' pad="small" colorIndex="accent-2">
+        <Box separator="none" margin='small' pad="small" colorIndex="light-2">
           <Anchor icon={<LinkNextIcon />} reverse={true} primary={false} path='/booking'
                   label='Réserver sans plus attendre une séance de massage pour votre chien'/>
           
@@ -54,23 +49,15 @@ class MainPage extends React.Component {
 
             <Box align='center' pad='medium' margin='medium' colorIndex='light-2' separator='all'>
               <Card thumbnail='https://www.chien.fr/assets/img/000/291/large/massage-canin.jpg'
-                heading='Le Massage Canin'
-                description='En apprendre plus sur les bienfaits du massage canin'
-                contentPad='none'
-                link={<Anchor href=''
-                  label='Suite ...' />}
+                    heading='Le Massage Canin'
+                    description='En apprendre plus sur les bienfaits du massage canin'
+                    contentPad='none'
+                    link={<Anchor href='' label='Suite' reverse={true} icon={<LinkNextIcon />} />}
               />
             </Box>
 
           </Columns>
 
-        </Section>
-
-        <Section align='center'>
-          <Quote credit='Juni Pi' emphasizeCredit>
-            <Paragraph>Im walking on sunshine</Paragraph>
-            <Paragraph>woohoo</Paragraph>
-          </Quote>
         </Section>
 
       </Article>

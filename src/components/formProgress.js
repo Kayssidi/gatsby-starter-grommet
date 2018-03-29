@@ -10,7 +10,6 @@ import CalendarIcon from "grommet/components/icons/base/Calendar";
 import UserIcon from "grommet/components/icons/base/User";
 import FavIcon from "grommet/components/icons/base/Favorite";
 import LikeIcon from "grommet/components/icons/base/Like";
-import Pulse from "grommet/components/icons/Pulse";
 
 //const CmpntStateless = props => <div>{props.children}</div>;
 

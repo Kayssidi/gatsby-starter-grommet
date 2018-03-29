@@ -67,18 +67,11 @@ class MenuHeader extends React.Component {
           <CmpntMenuItem label={this.labelAdmin()}   path='/admin' rightMargin='large'><InboxIcon /></CmpntMenuItem>
           
         </Header>
-        <Hero
-          background={
-            <Image
-              src={imgHeader}
-              fit="cover"
-              full={true}
-            />
-          }
-          size="small"
-          backgroundColorIndex="dark"
-        >
-          <Heading margin="none"><Anchor label="Tunousoul Massage" path={{ path: '/', index: true }}/></Heading>
+        <Hero size="small" backgroundColorIndex="dark"
+          background={ <Image src={imgHeader} fit="cover" full={true} /> }>
+          <Heading margin="none">
+            <Anchor label="Tunousoul Massage" path={{ path: '/', index: true }}/>
+          </Heading>
         </Hero>
       </div>
     );

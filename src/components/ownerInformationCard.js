@@ -20,6 +20,7 @@ class OwnerInformationCard extends React.Component {
 
     this.state = {
       stateUserObject:undefined,
+      stateInvalidFormsObject:{},
     };
   }
 
@@ -36,8 +37,20 @@ class OwnerInformationCard extends React.Component {
     };
     console.log(userObject);
     
-    this.setState( {stateUserObject : userObject} );
-    this.props.propValidForm();
+    //if there is at least 1 key value empty -> allFieldsFilled is false
+    let allFieldsFilled = true;
+    for (let key of Object.keys(userObject))
+    {
+      if(!userObject[key])
+      {
+        allFieldsFilled = false;
+      }
+    }
+    if(allFieldsFilled)
+    {
+      this.setState( {stateUserObject : userObject} );
+      this.props.propValidForm();
+    }
     //console.log(this.refs);
 
     /*base
@@ -57,11 +70,11 @@ class OwnerInformationCard extends React.Component {
         description="Comment pouvons nous vous joindre:"
         contentPad="none"
       >
-        <FormField label="Nom">
+        <FormField label="Nom" error="">
           <TextInput ref="refNom" />
         </FormField>
 
-        <FormField label="Prénom">
+        <FormField label="Prénom" error="Nop">
           <TextInput ref="refPrenom" />
         </FormField>
 
@@ -69,7 +82,7 @@ class OwnerInformationCard extends React.Component {
           <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref="refAdresse"/>
         </FormField>
 
-        <FormField label="Couriel">
+        <FormField label="Couriel" error={this.state.stateInvalidFormsObject.couriel}>
           <TextInput ref="refCouriel" />
         </FormField>
 
