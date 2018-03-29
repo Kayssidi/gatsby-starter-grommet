@@ -27,15 +27,11 @@ class DogInformationCard extends React.Component {
     event.preventDefault();
 
     let dogObject = {
-      nom: this.refs.refNom.componentRef.value,
-      age: this.refs.refAge.componentRef.value,
-      race:this.refs.refRace.componentRef.value,
-      pathologie: this.refs.refPathologie.componentRef.value,
+      nom: this.refNom.componentRef.value,
+      age: this.refAge.componentRef.value,
+      race:this.refRace.componentRef.value,
+      pathologie: this.refPathologie.componentRef.value,
     };
-    console.log(dogObject);
-    
-    //this.setState( {stateDogObject : dogObject} );
-    //this.props.propValidForm();
     
     //if there is at least 1 key value empty -> allFieldsFilled is false
     let allFieldsFilled = true;
@@ -57,46 +53,40 @@ class DogInformationCard extends React.Component {
     }
     if(allFieldsFilled)
     {
-      this.setState( {stateUserObject : dogObject} );
+      this.setState( {stateDogObject : dogObject} );
       this.props.propValidForm( dogObject.nom );
     }
     
-    this.setState( {stateInvalidFOrmsObject : invalidFormsObject});
+    this.setState( {stateInvalidFormsObject : invalidFormsObject} );
   }
   
   componentDidMount()
   {
-    this.refs.refNom.componentRef.focus();
+    this.refNom.componentRef.focus();
   }
 
   render() {
     return (
-      <Card
-        description="Dites nous en plus sur votre animal:"
-        contentPad="none"
-      >
+      <Card description="Dites nous en plus sur votre animal:" contentPad="none" >
+      
         <FormField label="Nom" error={this.state.stateInvalidFormsObject.nom}>
-          <TextInput ref="refNom"/>
+          <TextInput ref={ textInputEl => this.refNom = textInputEl }/>
         </FormField>
 
         <FormField label="Race" error={this.state.stateInvalidFormsObject.race}>
-          <TextInput ref="refRace"/>
+          <TextInput ref={ textInputEl => this.refRace = textInputEl }/>
         </FormField>
         
         <FormField label="Age" help="Optionnel">
-          <TextInput ref="refAge"/>
+          <TextInput ref={ textInputEl => this.refAge = textInputEl }/>
         </FormField>
 
         <FormField label="Eventuelle pathologie" help="Optionnel">
-          <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref="refPathologie"/>
+          <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref={ textInputEl => this.refPathologie = textInputEl }/>
         </FormField>
 
-        <Button
-          label="Valider"
-          type="button"
-          primary={true}
-          onClick={e => this.onValidateInfo(e)}
-        />
+        <Button label="Valider" type="button" primary={true} onClick={e => this.onValidateInfo(e)} />
+        
       </Card>
     );
   }
