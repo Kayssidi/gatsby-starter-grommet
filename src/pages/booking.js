@@ -34,7 +34,7 @@ class BookingPage extends React.Component {
     
       this.state =
       {
-          stateCurrentForm : 0,
+          stateCurrentForm : 3,
           stateValidatedDateTime : undefined,
       }
   }
@@ -52,8 +52,9 @@ class BookingPage extends React.Component {
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
-  validateUserInfo()
+  validateUserInfo(dogName)
   {
+    this.state( {stateDogName : dogName} );
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
@@ -64,7 +65,7 @@ class BookingPage extends React.Component {
   
   validateBooking()
   {
-    
+    this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
   goBackInForm(e)
@@ -96,7 +97,7 @@ class BookingPage extends React.Component {
     let currentForm3 = null;
     if(this.state.stateCurrentForm == 3)
       currentForm3 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
-                      <ValidationCard />
+                      <ValidationCard propValidForm={this.validateBooking} propBookingDateTime={this.state.stateValidatedDateTime} propDogName={this.state.stateDogName} />
                     </Animate>;
     return (
     <Article>

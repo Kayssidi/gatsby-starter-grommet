@@ -14,7 +14,7 @@ class ValidationCard extends React.Component {
   constructor(props) {
     super(props);
 
-    //this.callbackFunction = this.callbackFunction.bind(this);
+    this.onValidateInfo = this.onValidateInfo.bind(this);
 
 /*
       this.state =
@@ -24,17 +24,26 @@ class ValidationCard extends React.Component {
 */
   }
   
+  onValidateInfo(event) {
+    event.preventDefault();
+    this.props.propValidForm();
+  }
+  
   render() {
+    
+    let desciptionLabel = `Souhaitez vous nous communiquer une information supplémentaire avant de valider de réserver de la séance du ${this.props.propBookingDateTime} pour ${this.props.propDogName}?`;
+    
     return (
         <Card
-          description="Souhaitez vous nous communiquer une information supplémentaire avant de valider la réservation de la séance?"
+          description={desciptionLabel}
           contentPad="none"
         >
           <FormField label="Une question? Une précision? Dites nous tout ...">
             <ExtensibleTextArea propFocusedSize="10" propBluredSize="5"/>
           </FormField>
 
-          <Button label="Réserver la séance" type="submit" primary={true} />
+          <Button label="Réserver la séance" type="button" primary={true} onClick={e => this.onValidateInfo(e)}/>
+
         </Card>
     );
   }
