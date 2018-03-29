@@ -39,11 +39,17 @@ class OwnerInformationCard extends React.Component {
     
     //if there is at least 1 key value empty -> allFieldsFilled is false
     let allFieldsFilled = true;
+    let invalidFormsObject = this.state.stateInvalidFormsObject;
     for (let key of Object.keys(userObject))
     {
       if(!userObject[key])
       {
         allFieldsFilled = false;
+        invalidFormsObject[key] = true;
+      }
+      else
+      {
+        invalidFormsObject[key] = false;
       }
     }
     if(allFieldsFilled)
@@ -51,6 +57,8 @@ class OwnerInformationCard extends React.Component {
       this.setState( {stateUserObject : userObject} );
       this.props.propValidForm();
     }
+    
+    this.setState( {stateInvalidFOrmsObject : invalidFormsObject});
     //console.log(this.refs);
 
     /*base
@@ -70,15 +78,15 @@ class OwnerInformationCard extends React.Component {
         description="Comment pouvons nous vous joindre:"
         contentPad="none"
       >
-        <FormField label="Nom" error="">
+        <FormField label="Nom" error={this.state.stateInvalidFormsObject.nom}>
           <TextInput ref="refNom" />
         </FormField>
 
-        <FormField label="Prénom" error="Nop">
+        <FormField label="Prénom" error={this.state.stateInvalidFormsObject.prenom}>
           <TextInput ref="refPrenom" />
         </FormField>
 
-        <FormField label="Adresse">
+        <FormField label="Adresse" error={this.state.stateInvalidFormsObject.adresse}>
           <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref="refAdresse"/>
         </FormField>
 
@@ -86,7 +94,7 @@ class OwnerInformationCard extends React.Component {
           <TextInput ref="refCouriel" />
         </FormField>
 
-        <FormField label="Téléphone">
+        <FormField label="Téléphone" error={this.state.stateInvalidFormsObject.telephone}>
           <TextInput ref="refTelephone" />
         </FormField>
 
