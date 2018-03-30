@@ -5,7 +5,6 @@ import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 import Paragraph from 'grommet/components/Paragraph';
 import Columns from 'grommet/components/Columns';
-import Carousel from 'grommet/components/Carousel';
 import Image from 'grommet/components/Image';
 import Box from 'grommet/components/Box';
 
@@ -14,8 +13,6 @@ import TableRow from 'grommet/components/TableRow';
 
 // http://grommet.io/docs/icon/
 import FavIcon from "grommet/components/icons/base/Favorite";
-
-import img1 from "../assets/img/8465056651_efae1629b5_o.jpg";
 
 class InfoPage extends React.Component {
   state = {};
@@ -79,15 +76,7 @@ class InfoPage extends React.Component {
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
             </Paragraph>
           </AccordionPanel>
-          
-          <AccordionPanel heading="Gallerie Photos">
-            <Carousel autoplay={true} infinite={true} autoplaySpeed={2000}>
-              <Image src={img1} caption="Dog Bono" fit="cover"/>
-              <Image src={img1} caption="Dog Bono"/>
-              <Image src={img1} caption="Dog Bono"/>
-            </Carousel>
-          </AccordionPanel>
-      
+
         </Accordion>
 
       </Columns>

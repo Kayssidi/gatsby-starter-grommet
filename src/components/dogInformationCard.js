@@ -77,11 +77,11 @@ class DogInformationCard extends React.Component {
           <TextInput ref={ textInputEl => this.refRace = textInputEl }/>
         </FormField>
         
-        <FormField label="Age" help="Optionnel">
+        <FormField label="Age" help={<i>Optionnel</i>}>
           <TextInput ref={ textInputEl => this.refAge = textInputEl }/>
         </FormField>
 
-        <FormField label="Eventuelle pathologie" help="Optionnel">
+        <FormField label="Eventuelle pathologie" help={<i>Optionnel</i>}>
           <ExtensibleTextArea propFocusedSize="5" propBluredSize="1" ref={ textInputEl => this.refPathologie = textInputEl }/>
         </FormField>
 

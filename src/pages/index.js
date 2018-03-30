@@ -8,6 +8,7 @@ import Card from 'grommet/components/Card';
 import Columns from 'grommet/components/Columns';
 import Box from 'grommet/components/Box';
 import Anchor from 'grommet/components/Anchor';
+import Headline from 'grommet/components/Headline';
 
 // http://grommet.io/docs/icon/
 import LinkNextIcon from "grommet/components/icons/base/LinkNext";
@@ -17,14 +18,6 @@ class MainPage extends React.Component {
 
   constructor(props) {
     super(props);
-
-    /*
-      this.state =
-      {
-          field1 : value1,
-          field2 : value2,
-      }
-    */
   }
 
   render() {
@@ -32,14 +25,15 @@ class MainPage extends React.Component {
 
       <Article >
 
+        <Section pad='large' justify='center' align='center'>
+          <Headline margin='none'>Section 1</Headline>
+        </Section>
+        <Section pad='large' justify='center' align='center' colorIndex='grey-4'>
+          <Headline margin='none'>Section 2</Headline>
+        </Section>
         
         <Section pad={{ vertical: 'none' }} >
           
-        <Box separator="none" margin='small' pad="small" colorIndex="light-2">
-          <Anchor icon={<LinkNextIcon />} reverse={true} primary={false} path='/booking'
-                  label='Réserver sans plus attendre une séance de massage pour votre chien'/>
-          
-        </Box>
 
           <Columns justify='center'>
 

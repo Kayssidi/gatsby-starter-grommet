@@ -97,7 +97,7 @@ class OwnerInformationCard extends React.Component {
           <TextInput ref={ textInputEl => this.refCouriel = textInputEl } />
         </FormField>
 
-        <FormField label="Téléphone" help="Optionnel">
+        <FormField label="Téléphone" help={<i>Optionnel</i>}>
           <TextInput ref={ textInputEl => this.refTelephone = textInputEl } />
         </FormField>
 
