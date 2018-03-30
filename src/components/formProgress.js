@@ -11,43 +11,18 @@ import UserIcon from "grommet/components/icons/base/User";
 import FavIcon from "grommet/components/icons/base/Favorite";
 import LikeIcon from "grommet/components/icons/base/Like";
 
-//const CmpntStateless = props => <div>{props.children}</div>;
-
-/*
-const CmpntStateless2 = props =>  {
-                                    const var = 0;
-                                    return (
-                                      <div>{props.children}</div>
-                                    );
-                                  }
-*/
 const CmpntFormLabel = props => {
                                   const label = ['Réservation', 'Information' , 'Votre Animal' , 'Confirmation'];
                                   return (
                                     <Label margin="none" size="small">{label[props.propStep]}</Label>
                                   );
                                 }
-/*
-const CmpntStateless3 = props => {
-                                    return props.myProp? <div>{props.children}</div> : <div>{props.children}</div>
-                                 }
-*/
 
 class FormProgress extends React.Component {
   state = {};
 
   constructor(props) {
     super(props);
-    
-    //this.callbackFunction = this.callbackFunction.bind(this);
-    
-    /*
-      this.state =
-      {
-          field1 : value1,
-          field2 : value2,
-      }
-    */
   }
 
   render() {

@@ -61,14 +61,14 @@ class MenuHeader extends React.Component {
       <div>
         <Header size="small" colorIndex="light-2" justify="between">
 
-          <CmpntMenuItem label={this.labelReserve()} path='/booking' leftMargin='large'><CalendarIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelInfo()}    path='/info'><InfoIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelContact()} path='/contact'><MailIcon /></CmpntMenuItem>
-          <CmpntMenuItem label={this.labelAdmin()}   path='/admin' rightMargin='large'><InboxIcon /></CmpntMenuItem>
+          <CmpntMenuItem label={this.labelReserve()} path='/booking' leftMargin='large'> <CalendarIcon/> </CmpntMenuItem>
+          <CmpntMenuItem label={this.labelInfo()}    path='/info'>                       <InfoIcon />    </CmpntMenuItem>
+          <CmpntMenuItem label={this.labelContact()} path='/contact'>                    <MailIcon />    </CmpntMenuItem>
+          <CmpntMenuItem label={this.labelAdmin()}   path='/admin' rightMargin='large'>  <InboxIcon />   </CmpntMenuItem>
           
         </Header>
-        <Hero size="small" backgroundColorIndex="dark"
-          background={ <Image src={imgHeader} fit="cover" full={true} /> }>
+        
+        <Hero size="small" backgroundColorIndex="dark" background={ <Image src={imgHeader} fit="cover" full={true} /> }>
           <Heading margin="none">
             <Anchor label="Tunousoul Massage" path={{ path: '/', index: true }}/>
           </Heading>
