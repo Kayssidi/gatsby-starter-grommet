@@ -56,7 +56,7 @@ class OwnerInformationCard extends React.Component {
     if(allFieldsFilled)
     {
       this.setState( {stateUserObject : userObject} );
-      this.props.propValidForm();
+      this.props.propValidForm( userObject );
     }
     
     this.setState( {stateInvalidFOrmsObject : invalidFormsObject});

@@ -12,7 +12,6 @@ import Toast from 'grommet/components/Toast';
 import Notification from 'grommet/components/Notification';
 
 import base from "../database/base";
-
 import moment from "moment";
 
 class ContactPage extends React.Component {

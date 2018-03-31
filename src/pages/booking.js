@@ -38,6 +38,8 @@ class BookingPage extends React.Component {
           stateValidatedDateTime : undefined,
           stateDogName : undefined,
           stateShowConfirmationToast: false,
+          
+          stateUserObject : undefined,
       }
   }
 
@@ -55,14 +57,15 @@ class BookingPage extends React.Component {
     this.handleConfirmationToastClose();
   }
   
-  validateUserInfo()
+  validateUserInfo(userObject)
   {
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
+    this.setState( {stateUserObject: userObject} );
   }
   
-  validateDogInfo(dogName)
+  validateDogInfo(dogObject)
   {
-    this.setState( {stateDogName : dogName} );
+    this.setState( {stateDogObject : dogObject} );
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
   }
   
@@ -106,7 +109,10 @@ class BookingPage extends React.Component {
     let currentForm3 = null;
     if(this.state.stateCurrentForm == 3)
       currentForm3 =<Animate enter={{"animation": transitionType, "duration": 300}} keep={false}>
-                      <ValidationCard propValidForm={this.validateBooking} propBookingDateTime={this.state.stateValidatedDateTime} propDogName={this.state.stateDogName} />
+                      <ValidationCard propValidForm={this.validateBooking}
+                                      propBookingDateTime={this.state.stateValidatedDateTime}
+                                      propUserObject={this.state.stateUserObject}
+                                      propDogObject={this.state.stateDogObject} />
                     </Animate>;
     
     let validationNotif = null;

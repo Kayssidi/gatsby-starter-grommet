@@ -1,16 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import Box from 'grommet/components/Box';
-import Anchor from 'grommet/components/Anchor';
-
-import MailIcon from "grommet/components/icons/base/Mail";
-import HostIcon from "grommet/components/icons/base/Host";
-
-
-const CmpntAdminOption = props => <Box align="center" full="horizontal" pad="small">
-                                    <Anchor icon={props.children} label={props.label} path={{ path: props.path, index: true }} />
-                                  </Box>;
+import AdminHeader from "../components/adminHeader";
 
 class AdminPage extends React.Component {
   state = {};
@@ -31,12 +22,7 @@ class AdminPage extends React.Component {
 
   render() {
     return (
-      <Box>
-      
-        <CmpntAdminOption label="Inbox" path="inbox"><MailIcon /></CmpntAdminOption>
-        <CmpntAdminOption label="Archives" path="archives"><HostIcon /></CmpntAdminOption>
-        
-      </Box>
+      <AdminHeader/>
     );
   }
 }

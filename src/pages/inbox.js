@@ -75,7 +75,6 @@ class InboxPage extends React.Component {
   render() {
     return (
       <Box wrap={true} responsive padding='large' margin='large' direction="row" justify="around">
-        
           {
             this.state.stateMessages.map( (msg,idx) =>
 

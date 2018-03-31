@@ -54,7 +54,7 @@ class DogInformationCard extends React.Component {
     if(allFieldsFilled)
     {
       this.setState( {stateDogObject : dogObject} );
-      this.props.propValidForm( dogObject.nom );
+      this.props.propValidForm( dogObject );
     }
     
     this.setState( {stateInvalidFormsObject : invalidFormsObject} );

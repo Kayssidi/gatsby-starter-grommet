@@ -81,15 +81,16 @@ class MenuHeader extends React.Component {
           
         </Header>
         
-        <Hero size={heroSize} backgroundColorIndex="dark" background={ <Image src={imgHeader} fit="cover" full={true} /> }>
+        <Hero size={heroSize} background={ <Image src={imgHeader} fit="cover" full={true} /> }>
           <Card
               style={{backgroundColor: transparentLight2Color}}
               colorIndex="light-2"
+              margin={ {left:"large"} }
               heading={ <Heading strong={true}>Tunousoul Massage</Heading> }
               description="Offrez à votre animal de companie une séance de massage et de détente."
               label="Massage canin à domicile"
               size="large"
-              link={ <Anchor path={{ path: "/booking", index: true }} primary={true} label="Réserver une séance" /> } />
+              link={ <Anchor path={{ path: "/booking", index: false }} primary={true} label="Réserver une séance" /> } />
         </Hero>
       </div>
     );
