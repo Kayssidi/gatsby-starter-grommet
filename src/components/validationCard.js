@@ -33,15 +33,27 @@ class ValidationCard extends React.Component {
     event.preventDefault();
     
     let uid;
-    base.push(`users/`, { data: this.props.propUserObject })
+    
+    
+    let userCouriel = "kdo2";
+    let userObject = this.props.propUserObject;
+    userObject.booking = [];
+    userObject.booking.push( this.props.propBookingDateTime );
+    userObject.dogs = [];
+    userObject.dogs.push(this.props.propDogObject);
+    
+    /*base.post(`users/${userCouriel}`, { data: userObject })
+        .then( () => { this.onValidateDogInfo(); })
+        .catch(err => { console.log("error"); });*/
+        
+    base.push(`users/`, { data: userObject })
         .then( (newLocation) => {
                                   uid = newLocation.key;
                                   this.props.propDogObject.user = uid;
                                   this.userUid = uid;
-                                  this.onValidateUserInfo();
+                                  this.onValidateDogInfo();
                 })
         .catch( err => { console.log("error"); });
-
   }
   
   onValidateUserInfo() {
@@ -59,11 +71,24 @@ class ValidationCard extends React.Component {
   {
     let dateTimeObject = {
       user : this.userUid,
-      dog  : this.dogUid,
+      dog  : this.props.propDogObject.nom,
     }
+    
+    let Y = moment(this.props.propBookingDateTime).format("YYYY");
+    let M = moment(this.props.propBookingDateTime).format("MM");
+    let D = moment(this.props.propBookingDateTime).format("DD");
+    let H = moment(this.props.propBookingDateTime).format("HH");
+    let Min = moment(this.props.propBookingDateTime).format("mm");
+    
+    /*
     base.push(`booking/${this.props.propBookingDateTime}`, { data: dateTimeObject })
         .then( (newLocation) => { this.props.propValidForm(); })
         .catch( err => { console.log("error3"); });
+    */
+    
+    base.post(`booking/${Y}/${M}/${D}/${H}/${Min}`, { data: dateTimeObject })
+        .then( () => { this.props.propValidForm(); })
+        .catch(err => { console.log("error3"); });
   }
   
   render() {

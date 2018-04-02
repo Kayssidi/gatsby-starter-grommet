@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-
+import AdminHeader from "../components/adminHeader";
 
 import Card from 'grommet/components/Card';
 import Columns from 'grommet/components/Columns';
@@ -12,11 +12,6 @@ import Anchor from 'grommet/components/Anchor';
 import CloseIcon from "grommet/components/icons/base/Close";
 import ArchiveIcon from "grommet/components/icons/base/Archive";
 import FavoriteIcon from "grommet/components/icons/base/Favorite";
-
-import FavIcon from "grommet/components/icons/base/Favorite";
-import HelpIcon from "grommet/components/icons/base/Help";
-import MailIcon from "grommet/components/icons/base/Mail";
-import InboxIcon from "grommet/components/icons/base/Inbox";
 
 import base from "../database/base";
 
@@ -74,28 +69,31 @@ class InboxPage extends React.Component {
   
   render() {
     return (
-      <Box wrap={true} responsive padding='large' margin='large' direction="row" justify="around">
-          {
-            this.state.stateMessages.map( (msg,idx) =>
-
-              <Card key={msg.key}
-                    separator="all"
-                    margin="small"
-                    colorIndex="light-1"
-                    label={ `[#${idx}] ${this.timestamp2DateTime(msg.timestamp)}` }
-                    heading={msg.contact}
-                    description={msg.message} >
-
-                <Box separator="all" direction="row" justify="end" responsive={false} >
-                  <Button icon={<FavoriteIcon />} />
-                  <CmpntButtonArchive archives={this.props.archives} archiveFunction={ this.handleArchiveMessage } archiveMessage={msg}/>
-                  <Button icon={<CloseIcon />}   onClick={ () => this.handleDeleteMessage(msg.key) }/>
-                </Box>
-
-              </Card>
-            )
-          }
-        
+      <Box>
+        <AdminHeader/>
+        <Box wrap={true} responsive padding='large' margin='large' direction="row" justify="around">
+            {
+              this.state.stateMessages.map( (msg,idx) =>
+  
+                <Card key={msg.key}
+                      separator="all"
+                      margin="small"
+                      colorIndex="light-1"
+                      label={ `[#${idx}] ${this.timestamp2DateTime(msg.timestamp)}` }
+                      heading={msg.contact}
+                      description={msg.message} >
+  
+                  <Box separator="all" direction="row" justify="end" responsive={false} >
+                    <Button icon={<FavoriteIcon />} />
+                    <CmpntButtonArchive archives={this.props.archives} archiveFunction={ this.handleArchiveMessage } archiveMessage={msg}/>
+                    <Button icon={<CloseIcon />}   onClick={ () => this.handleDeleteMessage(msg.key) }/>
+                  </Box>
+  
+                </Card>
+              )
+            }
+          
+        </Box>
       </Box>
     
     );

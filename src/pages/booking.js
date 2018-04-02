@@ -19,6 +19,8 @@ import ValidationCard from "../components/validationCard";
 // http://grommet.io/docs/icon/
 import PrevIcon from "grommet/components/icons/base/CaretPrevious";
 
+import moment from "moment";
+
 class BookingPage extends React.Component {
   state = {};
 
@@ -55,6 +57,11 @@ class BookingPage extends React.Component {
     this.setState( {stateValidatedDateTime : timestamp} );
     this.setState((prevState) => { return {stateCurrentForm: prevState.stateCurrentForm + 1}; });
     this.handleConfirmationToastClose();
+    
+    let bookingDate = moment(timestamp).format("DD/MM/YYYY");
+    let bookingTime = moment(timestamp, ["H:m"]).format("HH:mm");
+    let bookingY = moment(timestamp).format("YYYY");
+    console.log(bookingY);
   }
   
   validateUserInfo(userObject)
