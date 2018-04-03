@@ -63,7 +63,7 @@ class UsersListPage extends React.Component {
                   
                   {
                     user.dogs.map( (dog,idx) =>
-                      <Box separator="all" direction="column">
+                      <Box separator="bottom" direction="column">
                         <Box direction="row" justify='around'>
                           <Box>{dog.nom}</Box>
                           <Box>{dog.race}</Box>
