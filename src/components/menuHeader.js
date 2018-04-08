@@ -86,7 +86,7 @@ class MenuHeader extends React.Component {
               style={{backgroundColor: transparentLight2Color}}
               colorIndex="light-2"
               margin={ {left:"large"} }
-              heading={ <Heading strong={true}>Tunousoul Massage</Heading> }
+              heading={ <Heading strong={true}><Anchor path={{ path: "/", index: false }}>Tunousoul Massage</Anchor></Heading> }
               description="Offrez à votre animal de companie une séance de massage et de détente."
               label="Massage canin à domicile"
               size="large"
